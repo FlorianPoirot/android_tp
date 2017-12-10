@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
     String              login;
     String              email;
     EditText            mInputEditText;
-    Button              mSendButton;
+    ImageButton         mSendButton;
     MessageAdapter      mMessageAdapter;
 
     DatabaseReference   mDatabaseReference;
@@ -52,8 +53,11 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
         mSendButton = findViewById(R.id.sendButton);
 
         mMessageAdapter = new MessageAdapter(new ArrayList<Message>());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mMessageAdapter);
 
         connectAndListenToFirebase();
