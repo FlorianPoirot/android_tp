@@ -17,7 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -69,8 +73,12 @@ public class MainActivity extends AppCompatActivity implements ValueEventListene
                     return;
                 }
                 DatabaseReference newData = mDatabaseReference.push();
+
+                Calendar cal = new GregorianCalendar(); //init calendar à l'instant t
+                long t1 = cal.getTimeInMillis();
+
                 newData.setValue(
-                        new Message(email, mInputEditText.getText().toString(), login, 0L));
+                        new Message(email, mInputEditText.getText().toString(), login, t1));
                 mInputEditText.setText("");
             }
         });

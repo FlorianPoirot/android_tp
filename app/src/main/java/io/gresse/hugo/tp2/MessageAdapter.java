@@ -1,6 +1,7 @@
 package io.gresse.hugo.tp2;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +52,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        TextView    mDateTextView;
         TextView    mUserTextView;
         TextView    mContentTextView;
         ImageView   mUserImageView;
@@ -57,12 +60,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         ViewHolder(View itemView) {
             super(itemView);
 
+            mDateTextView = itemView.findViewById(R.id.dateTextView);
             mUserTextView = itemView.findViewById(R.id.userTextView);
             mContentTextView = itemView.findViewById(R.id.contentTextView);
             mUserImageView = itemView.findViewById(R.id.userImageView);
         }
 
         void setData(Message message) {
+            //String dateString = DateFormat.format("MM/dd/yyyy", new Date(message.timestamp)).toString();
+
+            mDateTextView.setText(
+                    DateFormat.format("MM/dd/yyyy", new Date(message.timestamp)).toString()
+                            + " à : "
+                            + DateFormat.format("hh:mma", new Date(message.timestamp)).toString()
+            );
 
             Glide
                     .with(mUserImageView.getContext())
