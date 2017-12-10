@@ -63,7 +63,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         }
 
         void setData(Message message) {
-           
+
+            Glide
+                    .with(mUserImageView.getContext())
+                    .load(Constant.getGravatarPrefix() + Utils.md5(message.userEmail))
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(mUserImageView);
+
             mUserTextView.setText(message.userName + ": ");
             mContentTextView.setText(message.content);
         }

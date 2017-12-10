@@ -6,7 +6,7 @@ package io.gresse.hugo.tp2;
 
 class Constant {
 
-    private static final  String GRAVATAR_PREFIX  = "http://gravatar.com/avatar";
+    private static final  String GRAVATAR_PREFIX  = "https://www.gravatar.com/avatar/";
 
     public static String getGravatarPrefix() {
         return GRAVATAR_PREFIX;
